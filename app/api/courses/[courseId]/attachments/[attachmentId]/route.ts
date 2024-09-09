@@ -2,13 +2,9 @@ import {NextResponse} from "next/server";
 import {auth} from "@clerk/nextjs/server";
 import {db} from "@/lib/db";
 
-export async function POST(
-    req: Request,
-    {params}: {params: {courseId: string}}
-) {
+export async function DELETE(req : Request, {params} : {params: {courseId : string, attachmentId : string}}) {
     try {
-        const {userId} = auth()
-        const {url} = await req.json()
+        const {userId} = auth();
 
         if (!userId) return new NextResponse("Unauthorized", {status: 401})
 
@@ -21,17 +17,17 @@ export async function POST(
 
         if (!courseOwner) return new NextResponse("Unauthorized", {status: 401})
 
-        const attachment = await db.attachments.create({
-            data: {
-                url: url,
-                name: url.split("/").pop(),
-                courseId: courseOwner.id
+        const attachment = await db.attachments.delete({
+            where: {
+                courseId: courseOwner.id,
+                id: params.attachmentId
             }
         })
 
         return NextResponse.json(attachment)
+
     } catch (error) {
-        console.error("[COURSE_ID_ATTACHMENTS]", error)
-        return new NextResponse("Internal Server Error", {status: 500})
+        console.log("ATTACHMENT_ID", error);
+        return new NextResponse("Internal Error", {status: 500});
     }
 }

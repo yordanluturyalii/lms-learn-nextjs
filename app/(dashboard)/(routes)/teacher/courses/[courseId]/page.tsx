@@ -20,7 +20,7 @@ const CourseIdPage = async ({params}: { params: { courseId: string } }) => {
             id: params.courseId
         },
         include: {
-            attachment: {
+            attachments: {
                 orderBy: {
                     createdAt: "desc"
                 }

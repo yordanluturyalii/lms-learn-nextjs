@@ -1,5 +1,4 @@
 import {PrismaClient} from "@prisma/client";
-import {undefined} from "zod";
 
 declare global {
     var prisma: PrismaClient | undefined
