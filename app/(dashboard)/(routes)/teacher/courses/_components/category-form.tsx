@@ -8,11 +8,9 @@ import {FormItem, Form, FormControl, FormMessage, FormField} from "@/components/
 import {Button} from "@/components/ui/button";
 import {Pencil} from "lucide-react";
 import {useState} from "react";
-import {Input} from "@/components/ui/input";
 import toast from "react-hot-toast";
 import {useRouter} from "next/navigation";
 import {cn} from "@/lib/utils";
-import {Textarea} from "@/components/ui/textarea";
 import {Courses} from "@prisma/client";
 import {Combobox} from "@/components/ui/combobox";
 
@@ -92,7 +90,7 @@ export const CategoryForm = ({initialData, courseId, options}: CategoryFormProps
                             <FormField control={form.control} name={"categoryId"} render={({field}) => (
                                 <FormItem>
                                     <FormControl>
-                                        <Combobox options={...options} {...field} />
+                                        <Combobox options={options} {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
