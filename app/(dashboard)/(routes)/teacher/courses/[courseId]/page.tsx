@@ -9,6 +9,7 @@ import {ImageForm} from "@/app/(dashboard)/(routes)/teacher/courses/_components/
 import {CategoryForm} from "@/app/(dashboard)/(routes)/teacher/courses/_components/category-form";
 import {PriceForm} from "@/app/(dashboard)/(routes)/teacher/courses/_components/price-form";
 import {AttachmentForm} from "@/app/(dashboard)/(routes)/teacher/courses/_components/attachment-form";
+import {ChapterForm} from "@/app/(dashboard)/(routes)/teacher/courses/_components/chapters-form";
 
 const CourseIdPage = async ({params}: { params: { courseId: string } }) => {
     const {userId} = auth();
@@ -17,7 +18,8 @@ const CourseIdPage = async ({params}: { params: { courseId: string } }) => {
 
     const course = await db.courses.findUnique({
         where: {
-            id: params.courseId
+            id: params.courseId,
+            userId
         },
         include: {
             attachments: {
@@ -25,6 +27,11 @@ const CourseIdPage = async ({params}: { params: { courseId: string } }) => {
                     createdAt: "desc"
                 }
             },
+            chapters: {
+                orderBy: {
+                    position: "asc"
+                }
+            }
         },
     });
 
@@ -41,7 +48,8 @@ const CourseIdPage = async ({params}: { params: { courseId: string } }) => {
         course.description,
         course.imageUrl,
         course.price,
-        course.categoryId
+        course.categoryId,
+        course.chapters.some(chapter => chapter.isPublished)
     ];
 
     const totalFields = requiredFields.length;
@@ -84,7 +92,7 @@ const CourseIdPage = async ({params}: { params: { courseId: string } }) => {
                                 Course Chapter
                             </h2>
                         </div>
-                        <div>Todo: Chapter</div>
+                        <ChapterForm initialData={course} courseId={params.courseId} />
                     </div>
                     <div>
                         <div className={"flex items-center gap-x-2"}>
