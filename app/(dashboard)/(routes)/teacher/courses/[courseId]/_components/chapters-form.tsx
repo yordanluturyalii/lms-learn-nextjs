@@ -13,7 +13,7 @@ import {useRouter} from "next/navigation";
 import {cn} from "@/lib/utils";
 import {Chapters, Courses} from "@prisma/client";
 import {Input} from "@/components/ui/input";
-import {ChapterList} from "@/app/(dashboard)/(routes)/teacher/courses/_components/chapter-list";
+import {ChapterList} from "@/app/(dashboard)/(routes)/teacher/courses/[courseId]/_components/chapter-list";
 
 interface ChapterFormProps {
     initialData: Courses & {chapters: Chapters[]};
