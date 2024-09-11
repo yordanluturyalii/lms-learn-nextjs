@@ -2,6 +2,7 @@ import {auth} from "@clerk/nextjs/server";
 import {NextResponse} from "next/server";
 import {db} from "@/lib/db";
 import Mux from "@mux/mux-node";
+import { isTeacher } from "@/lib/teacher";
 
 const {video} = new Mux({
     tokenId: process.env["MUX_TOKEN_ID"]!,
@@ -12,7 +13,7 @@ export async function DELETE(request: Request, {params}: { params: { courseId: s
     try {
         const {userId} = auth();
 
-        if (!userId) return new NextResponse("Unauthorized", {status: 401});
+        if (!userId || !isTeacher(userId)) return new NextResponse("Unauthorized", {status: 401});
 
         const courseOwner = await db.courses.findUnique({
             where: {
@@ -53,7 +54,7 @@ export async function PATCH(request: Request, {params}: { params: { courseId: st
         const {userId} = auth();
         const values = await request.json();
 
-        if (!userId) return new NextResponse("Unauthorized", {status: 401});
+        if (!userId || !isTeacher(userId)) return new NextResponse("Unauthorized", {status: 401});
 
         const course = await db.courses.update({
             where: {
