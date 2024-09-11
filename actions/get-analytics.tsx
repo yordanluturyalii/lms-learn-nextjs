@@ -19,7 +19,7 @@ const groupByCourse = (purchases : PurchaseWithCourse[]) => {
     return grouped;
 }
 
-export const getAnalytics = async(userId : string) => {
+export const getAnalytics = async(userId : string): Promise<any> => {
     try {
         const purchases = await db.purchases.findMany({
             where: {
