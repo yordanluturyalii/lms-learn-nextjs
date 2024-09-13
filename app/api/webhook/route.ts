@@ -1,43 +1,25 @@
 import { db } from "@/lib/db";
-import { headers } from "next/headers";
 import { NextResponse } from "next/server";
-import Stripe from "stripe"
 
 export async function POST(request: Request) {
-    const body = await request.text();
-    const signature = headers().get("Stripe-Signature") as string;
+    const hook = await request.json();
 
-    let event: Stripe.Event;
+    const userId = hook.external_id.split("@")[2];
+    const courseId = hook.external_id.split("@")[1];
 
-    try {
-        event = Stripe.webhooks.constructEvent(
-            body, 
-            signature,
-            process.env.STRIPE_WEBHOOK_SECRET!
-        )
-    } catch (error: any) {
-        return new NextResponse(`Webhook error: ${error.message}`, {status: 400})
-    }
+    console.log(userId, courseId);
 
-    const session = event.data.object as Stripe.Checkout.Session;
-    const userId = session?.metadata?.userId;
-    const courseId = session?.metadata?.courseId;
-
-    if (event.type === "checkout.session.completed") {
-        if (!userId || !courseId) {
-            return new NextResponse("Webhook error: Missing metadata", {status: 400});
-        }
-
+    if (hook.status === "PAID") {
+        if (!userId || !courseId) return new NextResponse("Not Found", {status: 404}); 
+        
         await db.purchases.create({
             data: {
-                courseId: courseId,
-                userId: userId
+                userId,
+                courseId,
             }
-        });
+        })
     } else {
-        return new NextResponse(`Webhook error: Unhandled event type ${event.type}`, {status: 400});
+        return new NextResponse("Not Implemented", {status: 500});
     }
-
-    return new NextResponse(null, {status: 200});
 
 }

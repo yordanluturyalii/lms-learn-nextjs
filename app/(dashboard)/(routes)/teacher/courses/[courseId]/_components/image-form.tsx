@@ -45,8 +45,8 @@ export const ImageForm = ({initialData, courseId}: ImageFormProps) => {
             toast.success("Course updated");
             toggleEdit();
             router.refresh();
-        } catch {
-            toast.error("Something went wrong");
+        } catch (error) {
+            toast.error(`Something went wrong ${error}`);
         }
     }
 
