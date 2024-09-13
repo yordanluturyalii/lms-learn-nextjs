@@ -1,10 +1,13 @@
 
 import { db } from "@/lib/db";
-import { stripe } from "@/lib/stripe";
+import { xenditClient } from "@/lib/xendit";
 import { currentUser } from "@clerk/nextjs/server";
+import { randomUUID } from "crypto";
 import { url } from "inspector";
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
+import { Invoice as InvoiceClient, Customer as CustomerClient } from "xendit-node";
+import {CreateInvoiceRequest, Invoice} from "xendit-node/invoice/models";
 
 export async function POST(req : Request, {params}:{params: {courseId: string}}) {
     try {
@@ -37,22 +40,11 @@ export async function POST(req : Request, {params}:{params: {courseId: string}})
         if (!course) {
             return new NextResponse("Not Found", {status: 404});
         }
+        
+        const xenditInvoiceClient = new InvoiceClient({secretKey: process.env.XENDIT_API_KEY!});
+        const xenditCustomerClient = new CustomerClient({secretKey: process.env.XENDIT_API_KEY!});
 
-        const line_items: Stripe.Checkout.SessionCreateParams.LineItem[] = [
-            {
-                quantity: 1,
-                price_data: {
-                    currency: "IDR",
-                    product_data: {
-                        name: course.title,
-                        description: course.description!
-                    },
-                    unit_amount: Math.round(course.price! * 100)
-                }
-            }
-        ];
-
-        let stripeCustomer = await db.stripeCustomers.findUnique({
+        let xenditCustomer = await db.stripeCustomers.findUnique({
             where: {
                 userId: user.id,
             }, 
@@ -61,34 +53,44 @@ export async function POST(req : Request, {params}:{params: {courseId: string}})
             }
         });
 
-        if (!stripeCustomer) {
-            const customer = await stripe.customers.create({
-                email: user.emailAddresses[0].emailAddress
+        if (!xenditCustomer) {
+            const customer = xenditCustomerClient.createCustomer({
+                data: {
+                    referenceId: user.id,
+                    type: "INDIVIDUAL",
+                    individualDetail: {
+                        givenNames: user.fullName!,
+                    },
+                    email: user.emailAddresses[0].emailAddress
+                }
             });
 
-            stripeCustomer = await db.stripeCustomers.create({
+            await db.stripeCustomers.create({
                 data: {
                     userId: user.id,
-                    stripeCustomerId: customer.id
+                    stripeCustomerId: (await customer).id
                 }
             })
         }
 
-        const session = await stripe.checkout.sessions.create({
-            customer: stripeCustomer.stripeCustomerId,
-            line_items: line_items,
-            mode: "payment",
-            success_url: `${process.env.NEXT_PUBLIC_APP_URL}/courses/${course.id}?success=1`,
-            cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/courses/${course.id}?canceled=1`,
-            metadata: {
-                courseId: course.id,
-                userId: user.id
-            }
-        })
+        const data: CreateInvoiceRequest = {
+            amount: Math.round(course.price! * 100),
+            invoiceDuration: "172800",
+            externalId: `${randomUUID()}@${course.id}@${user.id}`, 
+            description: course.title,
+            currency: "IDR",
+            reminderTime: 1,
+            successRedirectUrl: `${process.env.NEXT_PUBLIC_APP_URL}/courses/${params.courseId}?success=1`,
+            failureRedirectUrl: `${process.env.NEXT_PUBLIC_APP_URL}/courses/${params.courseId}?canceled=1`,
+        }
 
-        return NextResponse.json({url: session.url})
+        const response: Invoice = await xenditInvoiceClient.createInvoice({
+            data,
+        });
+
+        return NextResponse.json({url: response.invoiceUrl});
     } catch (error) {
         console.log("[COURSE_CHECKOUT_ID]", error);
-        return new NextResponse("Internal Error", {status: 500});
+        return new NextResponse(`Internal Server Error: ${error}`, {status: 500});
     }
 }
