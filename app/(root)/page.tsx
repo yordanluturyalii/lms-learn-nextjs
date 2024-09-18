@@ -7,7 +7,6 @@ import { ChartColumnIncreasing, ChevronRight, CreditCard, Film, Folder, Folders 
 import { cn } from "@/lib/utils";
 import Navbar from "./_components/navbar";
 import Link from "next/link";
-import { MagicCard } from "@/components/magicui/magic-card";
 import { CourseCard } from "./_components/course-card";
 import ShimmerButton from "@/components/magicui/shimmer-button";
 import Particles from "@/components/magicui/particles";
@@ -17,10 +16,6 @@ import AnimatedGridPattern from "@/components/magicui/animated-grid-pattern";
 import { useRef } from "react";
 import Confetti, { ConfettiRef } from "@/components/magicui/confetti";
 import Footer from "./_components/footer";
-import { IconBadge } from "./_components/icon-badge";
-import Meteors from "@/components/magicui/meteors";
-import FlickeringGrid from "@/components/magicui/flickering-grid";
-import { BorderBeam } from "@/components/magicui/border-beam";
 import ShineBorder from "@/components/magicui/shine-border";
 import BoxReveal from "@/components/magicui/box-reveal";
 
