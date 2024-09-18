@@ -198,12 +198,12 @@ const LandingPage = () => {
         <span className="flex items-center justify-center text-center text-4xl font-bold text-black/70 dark:text-white md:py-6 py-4">Explore Featured Courses</span>
         <span className="text-muted-foreground font-normal text-center flex items-center justify-center -mt-5">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloribus ab quod perferendis doloremque! <br /> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo neque</span>
         <div className="w-full flex flex-wrap justify-around md:px-[10%] px-4 py-4">
-          <CourseCard title="Learn Next.js" imageUrl={"https://picsum.photos/300"} chaptersLength={10} category={"Frontend"} />
-          <CourseCard title="Advanced Web Development" imageUrl={"https://picsum.photos/300"} chaptersLength={1} category={"Web"} />
-          <CourseCard title="Full Course Premier Pro" imageUrl={"https://picsum.photos/300"} chaptersLength={13} category={"Film"} />
-          <CourseCard title="Learn Next.js" imageUrl={"https://picsum.photos/300"} chaptersLength={10} category={"Frontend"} />
-          <CourseCard title="Advanced Web Development" imageUrl={"https://picsum.photos/300"} chaptersLength={1} category={"Web"} />
-          <CourseCard title="Full Course Premier Pro" imageUrl={"https://picsum.photos/300"} chaptersLength={13} category={"Film"} />
+          <CourseCard title="Learn Next.js" imageUrl={"/next-js.jpg"} chaptersLength={10} category={"Frontend"} />
+          <CourseCard title="Advanced Web Development" imageUrl={"/web-dev.jpg"} chaptersLength={1} category={"Web"} />
+          <CourseCard title="Full Course Premier Pro" imageUrl={"/premier-pro.jpg"} chaptersLength={13} category={"Film"} />
+          <CourseCard title="Learn Next.js" imageUrl={"/premier-pro.jpg"} chaptersLength={10} category={"Frontend"} />
+          <CourseCard title="Advanced Web Development" imageUrl={"/next-js.jpg"} chaptersLength={1} category={"Web"} />
+          <CourseCard title="Full Course Premier Pro" imageUrl={"/web-dev.jpg"} chaptersLength={13} category={"Film"} />
         </div>
         <Link href={"/search"}>
           <ShimmerButton background="#9c40ff" className="mx-auto text-center">
