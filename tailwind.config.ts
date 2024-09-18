@@ -1,7 +1,6 @@
-import type {Config} from "tailwindcss";
-const {withUt} = require("uploadthing/tw");
+/** @type {import('tailwindcss').Config} */
 
-const config: Config = withUt({
+const config = {
     darkMode: ["class"],
     content: [
         "./pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -60,10 +59,66 @@ const config: Config = withUt({
                     '3': 'hsl(var(--chart-3))',
                     '4': 'hsl(var(--chart-4))',
                     '5': 'hsl(var(--chart-5))'
-                }
+                },
+                animation: {
+                    grid: "grid 15s linear infinite",
+                    shimmer: "shimmer 8s infinite",
+                    gradient: "gradient 8s linear infinite",
+                    meteor: "meteor 5s linear infinite",
+                    marquee: "marquee var(--duration) linear infinite",
+                    "marquee-vertical": "marquee-vertical var(--duration) linear infinite",
+                    "border-beam": "border-beam calc(var(--duration)*1s) infinite linear",
+                },
+                keyframes: {
+                    grid: {
+                        "0%": { transform: "translateY(-50%)" },
+                        "100%": { transform: "translateY(0)" },
+                    },
+                    shimmer: {
+                        "0%, 90%, 100%": {
+                            "background-position": "calc(-100% - var(--shimmer-width)) 0",
+                        },
+                        "30%, 60%": {
+                            "background-position": "calc(100% + var(--shimmer-width)) 0",
+                        },
+                    },
+                    gradient: {
+                        to: {
+                            backgroundPosition: "var(--bg-size) 0",
+                        },
+                    },
+                    meteor: {
+                        "0%": { transform: "rotate(215deg) translateX(0)", opacity: "1" },
+                        "70%": { opacity: "1" },
+                        "100%": {
+                            transform: "rotate(215deg) translateX(-500px)",
+                            opacity: "0",
+                        },
+                    },
+                    marquee: {
+                        from: { transform: "translateX(0)" },
+                        to: { transform: "translateX(calc(-100% - var(--gap)))" },
+                    },
+                    "border-beam": {
+                        "100%": {
+                            "offset-distance": "100%",
+                        },
+                    },
+                    "shine-pulse": {
+                        "0%": {
+                            "background-position": "0% 0%",
+                        },
+                        "50%": {
+                            "background-position": "100% 100%",
+                        },
+                        to: {
+                            "background-position": "0% 0%",
+                        },
+                    },
+                },
             }
         }
     },
     plugins: [require("tailwindcss-animate")],
-});
+};
 export default config;
