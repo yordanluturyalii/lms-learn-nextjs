@@ -166,7 +166,7 @@ const LandingPage = () => {
               <h1 className="mb-2 text-left text-xl font-medium sm:text-2xl text-black/80">Tracking and Reporting</h1>
             </BoxReveal>
             <BoxReveal boxColor={"#5046e6"} duration={0.5}>
-              <p className="text-justify text-sm text-neutral-500 sm:text-base">This feature tracks students' progress in video learning</p>
+              <p className="text-justify text-sm text-neutral-500 sm:text-base">This feature tracks students progress in video learning</p>
             </BoxReveal>
           </ShineBorder>
           <ShineBorder
