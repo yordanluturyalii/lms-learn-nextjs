@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import HyperText from "@/components/magicui/hyper-text";
 import TypingAnimation from "@/components/magicui/typing-animation";
@@ -18,6 +18,7 @@ import Confetti, { ConfettiRef } from "@/components/magicui/confetti";
 import Footer from "./_components/footer";
 import ShineBorder from "@/components/magicui/shine-border";
 import BoxReveal from "@/components/magicui/box-reveal";
+import { redirect } from "next/navigation";
 
 
 const reviews = [
@@ -25,49 +26,49 @@ const reviews = [
     name: "Jack",
     username: "@jack",
     body: "I've never seen anything like this before. It's amazing. I love it.",
-    img: "https://avatar.vercel.sh/jack",
+    img: "/next-js.jpg",
   },
   {
     name: "Jill",
     username: "@jill",
     body: "I don't know what to say. I'm speechless. This is amazing.",
-    img: "https://avatar.vercel.sh/jill",
+    img: "/web-dev.jpg",
   },
   {
     name: "John",
     username: "@john",
     body: "I'm at a loss for words. This is amazing. I love it.",
-    img: "https://avatar.vercel.sh/john",
+    img: "/premier-pro.jpg",
   },
   {
     name: "Jane",
     username: "@jane",
     body: "I'm at a loss for words. This is amazing. I love it.",
-    img: "https://avatar.vercel.sh/jane",
+    img: "/premier-pro.jpg",
   },
   {
     name: "Jenny",
     username: "@jenny",
     body: "I'm at a loss for words. This is amazing. I love it.",
-    img: "https://avatar.vercel.sh/jenny",
+    img: "/web-dev.jpg",
   },
   {
     name: "James",
     username: "@james",
     body: "I'm at a loss for words. This is amazing. I love it.",
-    img: "https://avatar.vercel.sh/james",
+    img: "/next-js.jpg",
   },
   {
     name: "Jojo",
     username: "@jojo",
     body: "I'm at a loss for words. This is amazing. I love it.",
-    img: "https://avatar.vercel.sh/james",
+    img: "/web-dev.jpg",
   },
   {
     name: "Hokky",
     username: "@hokky",
     body: "I'm at a loss for words. This is amazing. I love it.",
-    img: "https://avatar.vercel.sh/james",
+    img: "/premier-pro.jpg",
   },
 ];
 
@@ -91,9 +92,9 @@ const LandingPage = () => {
             <HyperText text="Academy" className="left-10 bg-gradient-to-tr from-[#7e22ce] to-[#701a75]/40 bg-clip-text text-center text-6xl font-semibold leading-none text-transparent dark:from-[#7e22ce] dark:to-[#701a75]/10" animateOnLoad={true} duration={70} />
           </div>
           <TypingAnimation text="An online learning platform to easily enhance skills with flexibility." duration={40} className="text-muted-foreground text-lg font-normal" />
-          <Link href={"/sign-up"}>
+          <a className="no-underline" href={"/home"}>
             <div className="z-10 flex items-center justify-center mt-4">
-              <AnimatedGradientText className="bg-black z-50">
+              <AnimatedGradientText className="bg-black z-50" key={10}>
                 🎉 <hr className="mx-2 h-4 w-[1px] shrink-0 bg-white" />{" "}
                 <span
                   className={cn(
@@ -105,7 +106,7 @@ const LandingPage = () => {
                 <ChevronRight className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5 text-white" />
               </AnimatedGradientText>
             </div>
-          </Link>
+          </a>
           <AnimatedGridPattern
             numSquares={30}
             maxOpacity={0.1}
