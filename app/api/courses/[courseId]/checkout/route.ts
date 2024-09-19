@@ -71,7 +71,7 @@ export async function POST(req : Request, {params}:{params: {courseId: string}})
         }
 
         const data: CreateInvoiceRequest = {
-            amount: Math.round(course.price! * 100),
+            amount: course.price!,
             invoiceDuration: "172800",
             externalId: `${randomUUID()}@${course.id}@${user.id}`, 
             description: course.title,
