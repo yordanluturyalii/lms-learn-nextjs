@@ -22,4 +22,6 @@ export async function POST(request: Request) {
         return new NextResponse("Not Implemented", {status: 500});
     }
 
+    return NextResponse.json(null, {status: 200});
+
 }
