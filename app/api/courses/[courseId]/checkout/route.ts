@@ -3,9 +3,7 @@ import { db } from "@/lib/db";
 import { xenditClient } from "@/lib/xendit";
 import { currentUser } from "@clerk/nextjs/server";
 import { randomUUID } from "crypto";
-import { url } from "inspector";
 import { NextResponse } from "next/server";
-import Stripe from "stripe";
 import { Invoice as InvoiceClient, Customer as CustomerClient } from "xendit-node";
 import {CreateInvoiceRequest, Invoice} from "xendit-node/invoice/models";
 
@@ -74,7 +72,7 @@ export async function POST(req : Request, {params}:{params: {courseId: string}})
         }
 
         const data: CreateInvoiceRequest = {
-            amount: Math.round(course.price! * 100),
+            amount: course.price!,
             invoiceDuration: "172800",
             externalId: `${randomUUID()}@${course.id}@${user.id}`, 
             description: course.title,
