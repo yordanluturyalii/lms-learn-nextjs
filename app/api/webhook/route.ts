@@ -10,7 +10,7 @@ export async function POST(request: Request) {
     console.log(userId, courseId);
 
     if (hook.status === "PAID") {
-        if (!userId || !courseId) return new NextResponse("Not Found", {status: 404}); 
+        if (!userId || !courseId) return new NextResponse("Webhook Error: Missing Metadata", {status: 400});   
         
         await db.purchases.create({
             data: {
