@@ -7,10 +7,12 @@ import { Button } from "@/components/ui/button";
 import { LogOut } from "lucide-react";
 import { SearchInput } from "./search-input";
 import { isTeacher } from "@/lib/teacher";
+import { ModeToggle } from "./mode-toggle";
+import { Logo } from "@/app/(home)/_components/logo";
 
 export const NavbarRoutes = () => {
 
-    const {userId} = useAuth();     
+    const { userId } = useAuth();
     const pathname = usePathname();
 
     const isTeacherPage = pathname?.startsWith("/teacher");
@@ -19,18 +21,25 @@ export const NavbarRoutes = () => {
 
     return (
         <>
-        {
-            isSearchPage && (
-                <div className={"hidden md:block"}>
-                    <SearchInput
+            {
+                isSearchPage && (
+                    <div className={"hidden md:block"}>
+                        <SearchInput
 
-                    />
-                </div>
-            )
-        }
-            <div className="flex gap-x-2 ml-auto">
+                        />
+                    </div>
+                )
+            }
+            {
+                isCoursePage && (
+                    <div>
+                        <Logo />
+                    </div>
+                )
+            }
+            <div className="flex gap-x-4 ml-auto">
                 {isTeacherPage || isCoursePage ? (
-                    <Link href={"/"}>
+                    <Link href={"/home"}>
                         <Button size={"sm"} variant={"ghost"}>
                             <LogOut className={"h-4 w-4 mr-2"} />
                             Exit
@@ -43,7 +52,10 @@ export const NavbarRoutes = () => {
                         </Button>
                     </Link>
                 ) : null}
-                <UserButton />
+                <ModeToggle />
+                <div className="pr-6">
+                    <UserButton />
+                </div>
             </div>
         </>
     )

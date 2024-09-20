@@ -24,8 +24,8 @@ export const VideoPlayer = ({ playbackId, chapterId, courseId, nextChapterId, is
     const [isReady, setIsReady] = useState(false);
     const router = useRouter();
     const confetti = useConfettiStore();
-    
-    const onEnded = async() => {
+
+    const onEnded = async () => {
         try {
             if (completeOnEnd) {
                 await axios.put(`/api/courses/${courseId}/chapters/${chapterId}/progress`, {
@@ -49,17 +49,17 @@ export const VideoPlayer = ({ playbackId, chapterId, courseId, nextChapterId, is
     }
 
     return (
-        <div className="relative aspect-video">
+        <div className="relative aspect-video max-w-full">
             {
                 !isReady && !isLocked && (
-                    <div className="absolute inset-0 flex items-center justify-center bg-slate-800">
+                    <div className="absolute inset-0 flex items-center justify-center bg-slate-800 border dark:border-slate-700 border-slate-300 rounded-md ">
                         <Loader2 className="h-8 w-8 animate-spin text-secondary" />
                     </div>
                 )
             }
             {
                 isLocked && (
-                    <div className="absolute inset-0 flex items-center justify-center flex-col bg-slate-800 text-white space-y-2">
+                    <div className="absolute inset-0 flex items-center justify-center flex-col bg-slate-800 text-white space-y-2 border dark:border-slate-700 border-slate-300 rounded-md ">
                         <Lock className="h-8 w-8" />
                         <p className="text-sm">
                             This chapter is locked
@@ -72,11 +72,11 @@ export const VideoPlayer = ({ playbackId, chapterId, courseId, nextChapterId, is
                     <MuxPlayer
                         title={title}
                         className={cn(
+                            "border dark:border-slate-700 border-slate-300 rounded-md ",
                             !isReady && "hidden"
                         )}
                         onCanPlay={() => setIsReady(true)}
                         onEnded={onEnded}
-                        autoPlay
                         playbackId={playbackId}
                     />
                 )

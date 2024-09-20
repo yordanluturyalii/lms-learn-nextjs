@@ -4,6 +4,7 @@ import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ToasterProvider } from "@/components/providers/toaster-provider";
 import { ConfettiProvider } from "@/components/providers/confetti-provider";
+import { ThemeProvider } from "@/components/providers/theme-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,7 +20,7 @@ export default function RootLayout({
 }>) {
     return (
         <ClerkProvider afterSignOutUrl={"/"}>
-            <html lang="en">
+            <html lang="en" suppressHydrationWarning>
                 <body className={inter.className}>
                     <ConfettiProvider />
                     <ToasterProvider />

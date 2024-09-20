@@ -18,7 +18,7 @@ interface CourseCardProps {
 export const CourseCard = ({id, title, imageUrl, chaptersLength, price, progress, category}: CourseCardProps) => {
     return (
         <Link href={`/courses/${id}`}>
-            <div className={"group hover:shadow-sm transition overflow-hidden border rounded-lg p-3 h-full"}>
+            <div className={"group hover:shadow-sm transition overflow-hidden border rounded-lg p-3 h-full dark:bg-[#09090b] dark:border-slate-500"}>
                 <div className={"relative w-full aspect-video rounded-md overflow-hidden"}>
                     <Image 
                         fill
@@ -28,7 +28,7 @@ export const CourseCard = ({id, title, imageUrl, chaptersLength, price, progress
                     />
                 </div>
                 <div className={"flex flex-col pt-2"}>
-                    <div className="text-lg md:text-base font-medium group-hover:text-sky-700 transition line-clamp-2">
+                    <div className="text-lg md:text-base font-medium group-hover:text-[#0d6dfc] transition line-clamp-2">
                         {title}
                     </div>
                     <p className="text-xs text-muted-foreground">
@@ -52,7 +52,7 @@ export const CourseCard = ({id, title, imageUrl, chaptersLength, price, progress
                             variant={progress === 100 ? "success" : "default"}
                         />
                     ): (
-                        <div className="text-md md:text-sm font-medium text-slate-700">
+                        <div className="text-md md:text-sm font-medium text-slate-700 dark:text-white">
                             {formatPrice(price)}
                         </div>
                     )}
