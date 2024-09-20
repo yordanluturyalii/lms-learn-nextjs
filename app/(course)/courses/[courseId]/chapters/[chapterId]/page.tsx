@@ -55,7 +55,7 @@ const ChapterIdPage = async ({ params }: {
                     <div className="hidden w-1/4 shrink-0 lg:block">
                         <div role="list" className="sticky flex flex-col gap-y-4">
                             <div className="relative z-10 overflow-hidden p-px">
-                                <div className="relative ring-1 ring-foreground/10 bg-[#0D0D0F]">
+                                <div className="relative ring-1 ring-foreground/10 px-4">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" className="justd-icons transitions-color absolute z-20 size-4 text-fg duration-300 -right-1.5 -top-1.5 -rotate-45 skyhp9p7cy" data-slot="icon" aria-hidden="true"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="m9 4 8 8-8 8"></path></svg>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" className="justd-icons transitions-color absolute z-20 size-4 text-fg duration-300 -left-1.5 -top-1.5 rotate-45 skyhp9p7cy" data-slot="icon" aria-hidden="true"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="m15 20-8-8 8-8"></path></svg>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" className="justd-icons transitions-color absolute z-20 size-4 text-fg duration-300 -bottom-1.5 -right-1.5 rotate-45 skyhp9p7cy" data-slot="icon" aria-hidden="true"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="m9 4 8 8-8 8"></path></svg>
