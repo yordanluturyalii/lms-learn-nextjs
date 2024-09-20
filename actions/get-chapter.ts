@@ -26,8 +26,11 @@ export const getChapter = async({
                 id: courseId
             },
             select: {
-                price: true
-            }
+                price: true,
+                title: true,
+                category: true,
+                chapters: true
+            },
         });
 
         const chapter = await db.chapters.findUnique({

@@ -44,7 +44,7 @@ const CreatePage = () => {
                 <h1 className={"text-2xl"}>
                     Name Your Course
                 </h1>
-                <p className={"text-sm text-slate-600"}>
+                <p className={"text-sm text-slate-600 dark:text-slate-400"}>
                     What would you like to name your course? Don&apos;t worry, you can change this later.
                 </p>
                 <Form {...form}>
@@ -64,7 +64,7 @@ const CreatePage = () => {
                             </FormItem>
                         )}/>
                         <div className="flex items-center gap-x-2">
-                            <Link href={"/"}>
+                            <Link href={"/home"}>
                                 <Button type={"button"} variant={"ghost"}>
                                     Cancel
                                 </Button>

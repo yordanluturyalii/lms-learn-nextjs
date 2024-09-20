@@ -11,7 +11,7 @@ interface InfoCardProps {
 
 export const InfoCard = ({variant, label, numberOfItems, icon : Icon}: InfoCardProps) => {
     return (
-        <div className="border rounded-md flex items-center gap-x-2 p-3">
+        <div className="border rounded-md flex items-center gap-x-2 p-3 dark:bg-[#09090b] dark:border-slate-500">
             <IconBadge
                 variant={variant}
                 icon={Icon}
@@ -20,7 +20,7 @@ export const InfoCard = ({variant, label, numberOfItems, icon : Icon}: InfoCardP
                 <p className="font-medium">
                     {label}
                 </p>
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-gray-100">
                     {numberOfItems} {numberOfItems === 1 ? "Course" : "Courses"}
                 </p>
             </div>
