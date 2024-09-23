@@ -22,9 +22,11 @@ export default function RootLayout({
         <ClerkProvider afterSignOutUrl={"/"}>
             <html lang="en" suppressHydrationWarning>
                 <body className={inter.className}>
-                    <ConfettiProvider />
-                    <ToasterProvider />
-                    {children}
+                    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+                        <ConfettiProvider />
+                        <ToasterProvider />
+                        {children}
+                    </ThemeProvider>
                 </body>
             </html>
         </ClerkProvider>

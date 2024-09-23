@@ -10,16 +10,15 @@ interface CourseItemProps {
     isCompleted?: boolean;
     courseId: string;
     isLocked: boolean,
-    isFree: boolean
 }
 
 export const CourseItem = ({
-    label, id, isCompleted, courseId, isLocked, isFree
+    label, id, isCompleted, courseId, isLocked, 
 }: CourseItemProps) => {
     const pathname = usePathname();
     const router = useRouter();
 
-    const Icon = isLocked ? Lock : (isFree ? CheckCircle : LockOpen);
+    const Icon = isLocked ? Lock : PlayCircle;
     const isActive = pathname?.includes(id)
 
     const onClick = () => {
@@ -28,14 +27,14 @@ export const CourseItem = ({
 
     return (
         <div className={cn(
-            "text-accent-fg group focus:outline-none focus-visible:bg-primary/80 focus-visible:text-primary-fg flex items-center justify-between rounded-md py-2 pl-3 pr-1.5 text-sm font-medium leading-6 tracking-tighter my-1 hover:bg-[#0A57CA] hover:text-white cursor-pointer",
+            "text-accent-fg group focus:outline-none focus-visible:bg-primary/80 focus-visible:text-primary-fg flex items-center justify-between rounded-md py-2 pl-3 pr-1.5 text-sm font-medium leading-6 tracking-tighter my-1 hover:bg-[#0A57CA] hover:text-white cursor-pointer px-4",
             isActive && "text-white bg-[#0d6dfc]",
-        )} 
-        onClick={onClick}
+        )}
+            onClick={onClick}
         >
             <div className="w-full flex justify-between gap-x-2">
                 {label}
-                <Icon size={22} className="w-3 dark:text-slate-200"/>
+                <Icon size={22} className="w-3 dark:text-slate-200" />
             </div>
         </div>
     )

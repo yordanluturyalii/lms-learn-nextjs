@@ -47,7 +47,7 @@ const CourseLayout = async ({
 
     return (
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <div className={"h-full w-full overflow-x-hidden"}>
+            <div className={"h-full w-full overflow-x-hidden text-black/70 dark:text-white"}>
                 <div className="h-[80px] w-full fixed inset-y-0 z-50">
                     <CourseNavbar
                         course={course}

@@ -30,7 +30,7 @@ export const CourseEnrollButton = ({price, courseId}: CourseEnrollButtonProps) =
     }
 
     return (
-        <Button className="w-full md:w-auto" size={"sm"} onClick={onClick} disabled={isLoading}>
+        <Button className="w-full md:w-auto bg-[#0d6dfc] text-white hover:bg-[#0d6dfc]/60" size={"sm"} onClick={onClick} disabled={isLoading}>
             Enroll for {formatPrice(price)}
         </Button>
     )

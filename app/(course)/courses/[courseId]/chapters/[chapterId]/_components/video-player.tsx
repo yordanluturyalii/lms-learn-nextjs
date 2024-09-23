@@ -8,6 +8,7 @@ import { Loader2, Lock } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { CourseEnrollButton } from "./course-enroll-button";
 
 interface VideoPlayerProps {
     playbackId: string;
@@ -16,10 +17,11 @@ interface VideoPlayerProps {
     nextChapterId?: string;
     isLocked: boolean;
     completeOnEnd: boolean;
-    title: string
+    title: string,
+    price: number
 }
 
-export const VideoPlayer = ({ playbackId, chapterId, courseId, nextChapterId, isLocked, completeOnEnd, title }: VideoPlayerProps) => {
+export const VideoPlayer = ({ playbackId, chapterId, courseId, nextChapterId, isLocked, completeOnEnd, title, price }: VideoPlayerProps) => {
 
     const [isReady, setIsReady] = useState(false);
     const router = useRouter();
@@ -61,9 +63,10 @@ export const VideoPlayer = ({ playbackId, chapterId, courseId, nextChapterId, is
                 isLocked && (
                     <div className="absolute inset-0 flex items-center justify-center flex-col bg-slate-800 text-white space-y-2 border dark:border-slate-700 border-slate-300 rounded-md ">
                         <Lock className="h-8 w-8" />
-                        <p className="text-sm">
+                        <p className="text-sm text-muted-foreground">
                             This chapter is locked
                         </p>
+                        <CourseEnrollButton courseId={courseId} price={price} />
                     </div>
                 )
             }
