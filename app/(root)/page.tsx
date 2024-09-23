@@ -128,10 +128,10 @@ const LandingPage = () => {
             color={["#A07CFE", "#FE8FB5", "#FFBE7B"]}
           >
             <BoxReveal boxColor={"#5046e6"} duration={0.5}>
-              <CreditCard className="text-black/80 mb-5 mt-2" />
+              <CreditCard className="text-black/70 dark:text-white mb-5 mt-2" />
             </BoxReveal>
             <BoxReveal boxColor={"#5046e6"} duration={0.5}>
-              <h1 className="mb-2 text-left text-xl font-medium sm:text-2xl text-black/80">Complete Payment</h1>
+              <h1 className="mb-2 text-left text-xl font-medium sm:text-2xl text-black/70 dark:text-white">Complete Payment</h1>
             </BoxReveal>
             <BoxReveal boxColor={"#5046e6"} duration={0.5}>
               <p className="text-justify text-sm text-neutral-500 sm:text-base">Accept payments via QRIS, E-wallet, Virtual Account, Debit/Credit Card, and Alfamart.</p>
@@ -142,10 +142,10 @@ const LandingPage = () => {
             color={["#A07CFE", "#FE8FB5", "#FFBE7B"]}
           >
             <BoxReveal boxColor={"#5046e6"} duration={0.5}>
-              <Folder className="text-black/80 mb-5 mt-2" />
+              <Folder className="text-black/70 dark:text-white mb-5 mt-2" />
             </BoxReveal>
             <BoxReveal boxColor={"#5046e6"} duration={0.5}>
-              <h1 className="mb-2 text-left text-xl font-medium sm:text-2xl text-black/80">Course Management</h1>
+              <h1 className="mb-2 text-left text-xl font-medium sm:text-2xl text-black/70 dark:text-white">Course Management</h1>
             </BoxReveal>
             <BoxReveal boxColor={"#5046e6"} duration={0.5}>
               <p className="text-justify text-sm text-neutral-500 sm:text-base">This feature lets instructors easily create and manage courses, organize content, assign instructors, and track progress.</p>
@@ -156,10 +156,10 @@ const LandingPage = () => {
             color={["#A07CFE", "#FE8FB5", "#FFBE7B"]}
           >
             <BoxReveal boxColor={"#5046e6"} duration={0.5}>
-              <ChartColumnIncreasing className="text-black/80 mb-5 mt-2" />
+              <ChartColumnIncreasing className="text-black/70 dark:text-white mb-5 mt-2" />
             </BoxReveal>
             <BoxReveal boxColor={"#5046e6"} duration={0.5}>
-              <h1 className="mb-2 text-left text-xl font-medium sm:text-2xl text-black/80">Tracking and Reporting</h1>
+              <h1 className="mb-2 text-left text-xl font-medium sm:text-2xl text-black/70 dark:text-white">Tracking and Reporting</h1>
             </BoxReveal>
             <BoxReveal boxColor={"#5046e6"} duration={0.5}>
               <p className="text-justify text-sm text-neutral-500 sm:text-base">This feature tracks students progress in video learning</p>
@@ -170,10 +170,10 @@ const LandingPage = () => {
             color={["#A07CFE", "#FE8FB5", "#FFBE7B"]}
           >
             <BoxReveal boxColor={"#5046e6"} duration={0.5}>
-              <Film className="text-black/80 mb-5 mt-2" />
+              <Film className="text-black/70 dark:text-white mb-5 mt-2" />
             </BoxReveal>
             <BoxReveal boxColor={"#5046e6"} duration={0.5}>
-              <h1 className="mb-2 text-left text-xl font-medium sm:text-2xl text-black/80">Multimedia Content Integration</h1>
+              <h1 className="mb-2 text-left text-xl font-medium sm:text-2xl text-black/70 dark:text-white">Multimedia Content Integration</h1>
             </BoxReveal>
             <BoxReveal boxColor={"#5046e6"} duration={0.5}>
               <p className="text-justify text-sm text-neutral-500 sm:text-base">Enables embedding videos, audio, presentations, and interactive materials into courses for enhanced learning experiences.</p>

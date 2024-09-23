@@ -3,13 +3,13 @@ import { Attachments, Chapters } from "@prisma/client";
 
 interface GetChapterProps {
     userId: string;
-    courseId: string; 
+    courseId: string;
     chapterId: string
 }
 
-export const getChapter = async({
+export const getChapter = async ({
     userId, courseId, chapterId
-} : GetChapterProps) => {
+}: GetChapterProps) => {
     try {
         const purchase = await db.purchases.findUnique({
             where: {
@@ -47,7 +47,8 @@ export const getChapter = async({
         let muxData = null;
         let attachments: Attachments[] = [];
         let nextChapter: Chapters | null = null;
-        
+        let previousChapter: Chapters | null = null;
+
         if (purchase) {
             attachments = await db.attachments.findMany({
                 where: {
@@ -75,25 +76,39 @@ export const getChapter = async({
                     position: "asc"
                 }
             })
+
+            previousChapter = await db.chapters.findFirst({
+                where: {
+                    courseId,
+                    isPublished: true,
+                    position: {
+                        lt: chapter?.position,
+                    }
+                },
+                orderBy: {
+                    position: "desc",
+                }
+            });
         }
 
         const userProgress = await db.userProgress.findUnique({
             where: {
                 userId_chapterId: {
-                    userId: userId, 
+                    userId: userId,
                     chapterId: chapterId,
                 },
             }
         });
 
         return {
-            chapter, 
-            course, 
+            chapter,
+            course,
             muxData,
             attachments,
             nextChapter,
             userProgress,
-            purchase
+            purchase,
+            previousChapter
         };
 
     } catch (error) {
